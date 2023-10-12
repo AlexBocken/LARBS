@@ -8,7 +8,7 @@
 
 dotfilesrepo="https://github.com/lukesmithxyz/voidrice.git"
 progsfile="https://raw.githubusercontent.com/LukeSmithxyz/LARBS/master/static/progs.csv"
-aurhelper="yay"
+aurhelper="paru"
 repobranch="master"
 export TERM=ansi
 
@@ -345,21 +345,24 @@ EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
 
 whiptail --infobox "Setting browser privacy settings and add-ons..." 7 60
 
-browserdir="/home/$name/.librewolf"
-profilesini="$browserdir/profiles.ini"
+## Add ungoogled-chromium repo and install it:
+sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key 3056513887B78AEB
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+echo "[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+pacman -Sy --noconfirm ungoogled-chromium
 
-# Start librewolf headless so it generates a profile. Then get that profile in a variable.
-sudo -u "$name" librewolf --headless >/dev/null 2>&1 &
-sleep 1
-profile="$(sed -n "/Default=.*.default-release/ s/.*=//p" "$profilesini")"
-pdir="$browserdir/$profile"
+## Basic services
+systemctl enable --now blutooth.service
+systemctl enable --now cronie.service
+systemctl enable --now chronyd.service
 
-[ -d "$pdir" ] && makeuserjs
-
-[ -d "$pdir" ] && installffaddons
-
-# Kill the now unnecessary librewolf instance.
-pkill -u "$name" librewolf
+# Add vi-increment to zsh
+git clone https://github.com/zsh-vi-more/vi-increment /home/$name/.local/src/vi-increment
+# build qutebrowser dictionaries
+git clone https://github.com/qutebrowser/qutebrowser /home/$name/.local/src/qutebrowser
+/home/$name/.local/src/qutebrowser/scripts/dictcli.py en-US de-DE
 
 # Allow wheel users to sudo with password and allow several system commands
 # (like `shutdown` to run without password).
