@@ -75,19 +75,19 @@ A,kjv,"King James bible"
 A,anki,"Space repetition learning (long install)"
 A,zoom,"You know it, you hate it, but you need it"
 ,pass-otp,"One time password support for pass"
-,qutebrowser,"vim-like browser with large customizability",
-,python-adblock,"Brave-like adblocking in qutebrowser",
+,qutebrowser,"vim-like browser with large customizability"
+,python-adblock,"Brave-like adblocking in qutebrowser"
 A,brave-bin,"Fallback Browser"
-,gomuks,"Terminal based Matrix/Element client",
-,rsync,"the smarter `cp`",
-A,tremc,"Terminal transmission client for torrents",
+,gomuks,"Terminal based Matrix/Element client"
+,rsync,"the smarter `cp`"
+A,tremc,"Terminal transmission client for torrents"
 ,picom,"Window Compositor which allows for gaussian blur effects"
 A,pass-git-helper,"Store your git specific logins in pass and automatically retrieve them when needed"
 ,python-numpy,"Efficient Matrix and array handling in Python"
 ,python-matplotlib,"Good Python plotting library copying matlabs implementation"
 ,python-scipy,"Always needed for scientific python"
 ,r,"Quirky but powerful language, very good for statistics"
-,shellcheck,"A linter for shellscripts",
+,shellcheck,"A linter for shellscripts"
 ,bluez,"you will want bluetooth, right?"
 ,bluez-utils,"Interact with your bluetooth on the commandline"
 ,cronie,"A simple cronjob manager"
