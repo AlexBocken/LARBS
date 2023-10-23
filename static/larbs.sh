@@ -353,6 +353,14 @@ echo "[chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
 pacman -Sy --noconfirm ungoogled-chromium
 
+## Add desolve r package repo
+echo '[desolve]
+Server = https://desolve.ru/archrepo/$arch' | sudo tee -a /etc/pacman.conf
+### import signing key for this repo
+sudo pacman-key --recv-keys DD3BF75DCD96541AC723B7CD6A4CD3276CA8EBBD
+sudo pacman-key --lsign-key DD3BF75DCD96541AC723B7CD6A4CD3276CA8EBBD
+
+
 ## Basic services
 systemctl enable --now blutooth.service
 systemctl enable --now cronie.service
